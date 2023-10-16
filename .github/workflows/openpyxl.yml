@@ -1,0 +1,31 @@
+name: openpyxl setup
+
+on:
+    push:
+
+jobs:
+    build:
+      runs-on: windows-latest
+  
+      steps:
+        - name: Check out code
+          uses: actions/checkout@v4
+
+        - name: Python Embeddable Download
+          run: Invoke-WebRequest -Uri https://www.python.org/ftp/python/3.11.4/python-3.11.4-embed-amd64.zip -Outfile Python.zip
+
+        - name: Python Embeddable Setup
+          run: |
+            Expand-Archive .\Python.zip -DestinationPath .\Python\
+            (Get-Content .\src\Whisper\Python311._pth) -replace '#import site', 'import site' | Set-Content .\src\Whisper\Python311._pth
+            Invoke-WebRequest -Uri https://bootstrap.pypa.io/get-pip.py -Outfile .\src\Whisper\get-pip.py
+            .\Python\Python.exe .\src\Whisper\get-pip.py
+            .\Python\Python.exe -m pip install -U pip
+
+        - name: Python Ebeddable Setup Dependencies
+          run: |
+            .\Python\Python.exe -m pip install -U openpyxl
+            .\Python\Python.exe -m pip install -U pdfrw
+            .\Python\Python.exe -m pip install -U pymupdf
+            .\Python\Python.exe -m pip install -U pypdf2
+            .\Python\Python.exe -m pip install -U reportlab
