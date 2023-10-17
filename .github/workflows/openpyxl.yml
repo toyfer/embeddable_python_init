@@ -29,10 +29,14 @@ jobs:
             .\Python\Python.exe -m pip install -U pymupdf
             .\Python\Python.exe -m pip install -U pypdf2
             .\Python\Python.exe -m pip install -U reportlab
+            .\Python\Python.exe -m pip install -U pycryptodome
+
+        - name: Compress Python
+          run: Compress-Archive -Path .\Python -DestinationPath .\Python_Embeddable.zip
 
         - name: Archive artifacts
           uses: actions/upload-artifact@v3
           with:
             name: Python Embeddable
             path: | 
-              ./*
+              .\Python_Embeddable.zip
