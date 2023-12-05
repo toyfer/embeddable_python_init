@@ -1,4 +1,4 @@
-name: openpyxl setup
+name: work_4_python setup
 
 on:
     push:
@@ -25,9 +25,7 @@ jobs:
         - name: Python Ebeddable Setup Dependencies
           run: |
             .\Python\Python.exe -m pip install -U openpyxl
-            .\Python\Python.exe -m pip install -U pypdf
-            .\Python\Python.exe -m pip install -U pycryptodome
-            .\Python\Python.exe -m pip install -U pikepdf
+            .\Python\Python.exe -m pip install -U pdfminer3k
 
         - name: Compress Python
           run: Compress-Archive -Path .\Python\* -DestinationPath .\Python_Embeddable.zip
