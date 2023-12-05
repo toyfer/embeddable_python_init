@@ -25,7 +25,7 @@ jobs:
         - name: Python Ebeddable Setup Dependencies
           run: |
             .\Python\Python.exe -m pip install -U openpyxl
-            .\Python\Python.exe -m pip install -U pdfminer3k
+            .\Python\Python.exe -m pip install -U pypdf
 
         - name: Compress Python
           run: Compress-Archive -Path .\Python\* -DestinationPath .\Python_Embeddable.zip
