@@ -25,7 +25,7 @@ jobs:
         - name: Python Ebeddable Setup Dependencies
           run: |
             .\Python\Python.exe -m pip install -U pandas
-            .\Python\Python.exe -m pip install -U pip install img2table
+            .\Python\Python.exe -m pip install -U img2table
             .\Python\Python.exe -m pip install -U openpyxl
 
         - name: Compress Python
