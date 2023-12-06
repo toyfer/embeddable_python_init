@@ -27,6 +27,8 @@ jobs:
             .\Python\Python.exe -m pip install -U pandas
             .\Python\Python.exe -m pip install -U camelot-py
             .\Python\Python.exe -m pip install -U openpyxl
+            .\Python\Python.exe -m pip install -U opencv-python
+            .\Python\Python.exe -m pip install -U opencv-contrib-python
 
         - name: Compress Python
           run: Compress-Archive -Path .\Python\* -DestinationPath .\Python_Embeddable.zip
