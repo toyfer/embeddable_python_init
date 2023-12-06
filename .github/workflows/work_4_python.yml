@@ -24,6 +24,8 @@ jobs:
 
         - name: Python Ebeddable Setup Dependencies
           run: |
+            .\Python\Python.exe -m pip install -U pandas
+            .\Python\Python.exe -m pip install -U camelot-py[base]
             .\Python\Python.exe -m pip install -U openpyxl
             .\Python\Python.exe -m pip install -U pypdf
 
