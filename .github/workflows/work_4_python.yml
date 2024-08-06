@@ -17,7 +17,7 @@ jobs:
         - name: Python Embeddable Setup
           run: |
             Expand-Archive .\Python.zip -DestinationPath .\Python\
-            (Get-Content .\Python\Python311._pth) -replace '#import site', 'import site' | Set-Content .\Python\Python312._pth
+            (Get-Content .\Python\Python312._pth) -replace '#import site', 'import site' | Set-Content .\Python\Python312._pth
             Invoke-WebRequest -Uri https://bootstrap.pypa.io/get-pip.py -Outfile .\Python\get-pip.py
             .\Python\Python.exe .\Python\get-pip.py
             .\Python\Python.exe -m pip install -U pip
