@@ -27,6 +27,7 @@ jobs:
             .\Python\Python.exe -m pip install -U mkdocs
             .\Python\Python.exe -m pip install -U mkdocs-material
             .\Python\Python.exe -m pip install -U mkdocs-with-pdf
+            .\Python\Python.exe -m pip install -U weasyprint
 
         - name: Compress Python
           run: Compress-Archive -Path .\Python\* -DestinationPath .\Python_Embeddable.zip
