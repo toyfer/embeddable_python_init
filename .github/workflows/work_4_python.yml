@@ -18,16 +18,16 @@ jobs:
           run: |
             Expand-Archive .\Python.zip -DestinationPath .\Python\
             (Get-Content .\Python\Python312._pth) -replace '#import site', 'import site' | Set-Content .\Python\Python312._pth
-            Invoke-WebRequest -Uri https://bootstrap.pypa.io/get-pip.py -Outfile .\Python\get-pip.py
-            .\Python\Python.exe .\Python\get-pip.py
-            .\Python\Python.exe -m pip install -U pip
+            
+            # Invoke-WebRequest -Uri https://bootstrap.pypa.io/get-pip.py -Outfile .\Python\get-pip.py
+            # .\Python\Python.exe .\Python\get-pip.py
+            # .\Python\Python.exe -m pip install -U pip
+            $env:UV_INSTALL_DIR = (pwd).Path + '\python'
+            irm https://astral.sh/uv/install.ps1 | iex
 
         - name: Python Ebeddable Setup Dependencies
           run: |
-            .\Python\Python.exe -m pip install -U mkdocs
-            .\Python\Python.exe -m pip install -U mkdocs-material
-            .\Python\Python.exe -m pip install -U mkdocs-with-pdf
-            .\Python\Python.exe -m pip install -U weasyprint
+            .\Python\Python.exe -m uv install aspose-pdf
 
         - name: Compress Python
           run: Compress-Archive -Path .\Python\* -DestinationPath .\Python_Embeddable.zip
