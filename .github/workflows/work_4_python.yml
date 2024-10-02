@@ -25,9 +25,11 @@ jobs:
             $env:UV_INSTALL_DIR = (pwd).Path + '\python'
             irm https://astral.sh/uv/install.ps1 | iex
 
-        - name: Python Ebeddable Setup Dependencies
+        - name: Python Embeddable Setup Dependencies
           run: |
-            .\Python\Python.exe -m uv install aspose-pdf
+            uv install python
+            uv pip install aspose-pdf
+
 
         - name: Compress Python
           run: Compress-Archive -Path .\Python\* -DestinationPath .\Python_Embeddable.zip
