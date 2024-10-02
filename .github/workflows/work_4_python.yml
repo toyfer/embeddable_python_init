@@ -27,7 +27,7 @@ jobs:
 
         - name: Python Embeddable Setup Dependencies
           run: |
-            uv install python
+            uv python install
             uv pip install aspose-pdf
 
 
