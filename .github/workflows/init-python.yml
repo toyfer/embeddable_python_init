@@ -47,7 +47,7 @@ jobs:
               ## Python Embeddable with UV and Pandas
               
               - **Python Version**: 3.13.7
-              - **Package Manager**: UV
+              - **Package Manager**: -
               - **Added Package**: pandas
               - **Build Date**: ${{ github.event.head_commit.timestamp }}
               - **Commit**: ${{ github.sha }}
