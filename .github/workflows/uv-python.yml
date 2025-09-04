@@ -6,7 +6,11 @@ on:
 jobs:
     build:
       runs-on: windows-latest
-  
+      
+      # 👇 権限を追加！
+      permissions:
+        contents: write  # Release作成に必要
+        
       steps:
         - name: Check out code
           uses: actions/checkout@v5
@@ -52,7 +56,7 @@ jobs:
               *This release is automatically updated on every push*
             files: |
               ./Python_Embeddable.zip
-            overwrite: true
+            # 👇 overwriteパラメータを削除（同じtag_nameを指定すれば自動的に更新される）
             make_latest: true
           env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
