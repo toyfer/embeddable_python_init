@@ -20,8 +20,6 @@ jobs:
 
         - name: Python Embeddable Setup
           run: |
-            md Python
-
             Expand-Archive .\Python.zip -DestinationPath .\Python\
             (Get-Content .\Python\Python313._pth) -replace '#import site', 'import site' | Set-Content .\Python\Python313._pth
 
