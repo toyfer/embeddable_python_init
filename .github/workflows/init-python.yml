@@ -31,7 +31,7 @@ jobs:
 
         - name: Python Embeddable Setup Dependencies
           run: |
-            .\Python\Python.exe pip install pandas
+            .\Python\Python.exe -m pip install pandas
 
         - name: Compress Python
           run: Compress-Archive -Path .\Python\* -DestinationPath .\Python_Embeddable.zip
