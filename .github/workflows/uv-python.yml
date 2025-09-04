@@ -12,7 +12,7 @@ jobs:
           uses: actions/checkout@v5
 
         - name: Python Embeddable Download
-          run: Invoke-WebRequest -Uri https://www.python.org/ftp/python/3.13.7/python-3.13.7-embed-amd64.zip -Outfile Python.zip
+          run: # Invoke-WebRequest -Uri https://www.python.org/ftp/python/3.13.7/python-3.13.7-embed-amd64.zip -Outfile Python.zip
 
         - name: Python Embeddable Setup
           run: |
@@ -30,7 +30,7 @@ jobs:
         - name: Python Embeddable Setup Dependencies
           run: |
             uv python install
-            uv pip install pandas
+            uv pip install pandas --system
 
         - name: Compress Python
           run: Compress-Archive -Path .\Python\* -DestinationPath .\Python_Embeddable.zip
