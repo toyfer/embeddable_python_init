@@ -1,0 +1,58 @@
+name: uv-python
+
+on:
+    push:
+
+jobs:
+    build:
+      runs-on: windows-latest
+  
+      steps:
+        - name: Check out code
+          uses: actions/checkout@v5
+
+        - name: Python Embeddable Download
+          run: Invoke-WebRequest -Uri https://www.python.org/ftp/python/3.13.7/python-3.13.7-embed-amd64.zip -Outfile Python.zip
+
+        - name: Python Embeddable Setup
+          run: |
+            md Python
+
+            #Expand-Archive .\Python.zip -DestinationPath .\Python\
+            #(Get-Content .\Python\Python313._pth) -replace '#import site', 'import site' | Set-Content .\Python\Python313._pth
+
+            # Invoke-WebRequest -Uri https://bootstrap.pypa.io/get-pip.py -Outfile .\Python\get-pip.py
+            # .\Python\Python.exe .\Python\get-pip.py
+            # .\Python\Python.exe -m pip install -U pip
+            $env:UV_INSTALL_DIR = (pwd).Path + '\python'
+            irm https://astral.sh/uv/install.ps1 | iex
+
+        - name: Python Embeddable Setup Dependencies
+          run: |
+            uv python install
+            uv pip install pandas
+
+        - name: Compress Python
+          run: Compress-Archive -Path .\Python\* -DestinationPath .\Python_Embeddable.zip
+
+        - name: Update Release (always update latest release)
+          uses: softprops/action-gh-release@v2
+          with:
+            tag_name: latest
+            name: Python Embeddable with UV
+            body: |
+              ## Python Embeddable with UV and Pandas
+              
+              - **Python Version**: 3.13.7
+              - **Package Manager**: UV
+              - **Added Package**: pandas
+              - **Build Date**: ${{ github.event.head_commit.timestamp }}
+              - **Commit**: ${{ github.sha }}
+              
+              *This release is automatically updated on every push*
+            files: |
+              ./Python_Embeddable.zip
+            overwrite: true
+            make_latest: true
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
