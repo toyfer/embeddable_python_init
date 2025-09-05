@@ -1,4 +1,4 @@
-name: uv-python
+name: init-python
 
 on:
     push:
@@ -56,4 +56,5 @@ jobs:
             # 👇 overwriteパラメータを削除（同じtag_nameを指定すれば自動的に更新される）
             make_latest: true
           env:
+
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
