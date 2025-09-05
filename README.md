@@ -1,4 +1,4 @@
-# Embeddable Python Init
+# Python オフライン配布パッケージビルダー
 
 GitHub Actionsを使用してオフライン・スタンドアロンで動作するPythonパッケージを自動構築・配布するプロジェクトです。
 
@@ -134,7 +134,7 @@ graph TD
   uses: softprops/action-gh-release@v2
   with:
     tag_name: latest
-    name: Python Embeddable with UV
+    name: Python Embeddable with pandas
     # ... その他の設定
 ```
 **役割**: GitHubリリースを作成・更新し、配布パッケージを公開します。
