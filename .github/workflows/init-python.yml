@@ -29,16 +29,9 @@ jobs:
 
       - name: Python Embeddable Setup Dependencies
         run: |
-          .\Python\Python.exe -m pip install \
-            pandas \
-            numpy \
-            matplotlib \
-            seaborn \
-            scikit-learn \
-            openpyxl \
-            xlrd \
-            ipykernel \
-            jupyterlab
+          # PowerShell 上では行末のバックスラッシュ (\) は行継続に使えないため、
+          # パッケージは1行で指定するか、PowerShell の継続文字（バッククォート `）を正しく使う必要がある。
+          .\Python\Python.exe -m pip install pandas numpy matplotlib seaborn scikit-learn openpyxl xlrd ipykernel jupyterlab
 
       - name: Compress Python
         run: Compress-Archive -Path .\Python\* -DestinationPath .\Python_Embeddable.zip
